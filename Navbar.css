@@ -1,0 +1,19 @@
+/* src/components/Navbar.css */
+nav {
+  background-color: #ffffff;  /* White background */
+  padding: 10px;
+  display: flex;
+  justify-content: space-around; /* Space links evenly */
+  position: sticky;  /* Sticks to top when scrolling */
+  top: 0;  /* Aligns it at the top */
+  width: 100%;  /* Full width of the page */
+  z-index: 10;  /* Keeps navbar above other content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
+}
+
+nav a {
+  text-decoration: none;
+  color: #4CAF50;  /* Change as needed */
+  margin: 0 15px;  /* Space between links */
+  font-weight: bold;
+}
