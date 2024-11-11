@@ -1,0 +1,18 @@
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f1f1f1;
+    color: #333;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0; /* Ensure it stays within the viewport */
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      font-size: 0.9rem; /* Adjust font size for smaller screens */
+      padding: 0.5rem; /* Adjust padding for smaller screens */
+    }
+  }
+  
