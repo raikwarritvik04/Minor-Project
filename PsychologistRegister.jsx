@@ -214,17 +214,6 @@ const PsychologistRegister = () => {
             />
           </div>
 
-          <div className="form-group">
-            <input
-              type="text"
-              name="location"
-              placeholder="Enter your location: 'City, State'"
-              value={formData.location}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
           {["day1", "day2"].map((_, index) => (
             <div className="form-group" key={`availability-${index}`}>
               <select
@@ -265,6 +254,17 @@ const PsychologistRegister = () => {
           ))}
 
           <input type="hidden" name="rating" value={formData.rating} />
+
+          <div className="form-group">
+            <input
+              type="text"
+              name="location"
+              placeholder="Enter your location: 'City, State'"
+              value={formData.location}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
           <div className="form-group">
             <textarea
@@ -331,85 +331,96 @@ const PsychologistRegister = () => {
         <style>
       {`
         body {
-            background-color: #E6E6FA;
-          }
+  background-color: #E6E6FA;
+}
 
-          .register-container {
-            width: 500px;
-            margin: 30px auto;
-            padding: 20px;
-            border: 2px solid #4CAF50;
-            background-color: #F5F5F5;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 100px;
-          }
+.register-container {
+  width: 750px;
+  margin: 10px auto;
+  padding: 20px;
+  border: 2px solid #4CAF50;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
 
-          form {
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-            width: 100%;
-            align-items: center;
-          }
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 15px; /* gap between the input fields */
+  width: 80%;
+  align-items: center;
+}
 
-          .form-group input,
-          .form-group textarea {
-            padding: 10px;
-            width: 300px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 2px solid #4CAF50;
-          }
+.form-group input {
+  padding: 10px;
+  width: 92%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #4CAF50;
+}
 
-          .form-group select {
-            padding: 10px;
-            width: 107px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 2px solid #4CAF50;
-          }
+.form-group textarea {
+  padding: 20px;
+  width: 85%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #4CAF50;
+  resize: none;
+}
 
-          .submit-btn {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            width: 150px;
-          }
+.form-group select {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #4CAF50;
+}
 
-          .submit-btn:hover {
-            background-color: #45a049;
-            cursor: pointer;
-          }
+.submit-btn {
+  grid-column: span 2; /* make the button span across both columns */
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  margin-left: 150px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
 
-        .error-message {
-          color: red;
-          margin-top: 10px;
-          text-align: center;
-        }
+.submit-btn:hover {
+  background-color: #45a049;
+  cursor: pointer;
+}
 
-        .success-message-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 500px;
-            margin-bottom: 0px;
-            text-align: center;
-            animation: fadeIn 0.5s ease, slideDown 0.5s ease;
-          }
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-message-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  margin-bottom: 0px;
+  text-align: center;
+  animation: fadeIn 0.5s ease, slideDown 0.5s ease;
+}
+
       `}
       </style>
       </div>
