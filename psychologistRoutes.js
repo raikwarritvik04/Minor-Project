@@ -26,48 +26,6 @@ router.get('/psychologists', async (req, res) => {
   }
 });
 
-// Registration Route for Psychologists
-router.post('/register', async (req, res) => {
-  const { name, email, password, phone, specialties, experience, location, availability, imageUrl, zoomLink } = req.body;
-
-  // Input validation
-  if (!name || !email || !password || !phone || !specialties || !experience || !location || !availability || !imageUrl || !zoomLink) {
-    return res.status(400).json({ error: 'All fields are required' });
-  }
-
-  try {
-    // Check if psychologist already exists
-    const existingPsychologist = await Psychologist.findOne({ email });
-    if (existingPsychologist) {
-      return res.status(400).json({ error: 'Psychologist already exists' });
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new psychologist
-    const newPsychologist = new Psychologist({
-      name,
-      email,
-      password: hashedPassword,
-      phone,
-      specialties,
-      experience,
-      location,
-      availability,
-      imageUrl,
-      zoomLink,
-    });
-
-    // Save the new psychologist to the database
-    await newPsychologist.save();
-    res.status(201).json({ message: 'Psychologist registered successfully!' });
-  } catch (error) {
-    console.error("Error during registration:", error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
 // Login Route for Psychologists
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -97,10 +55,23 @@ router.post('/login', async (req, res) => {
 // Endpoint to create a new psychologist with a hashed password
 router.post('/psychologists', async (req, res) => {
   try {
-    const { password, ...otherFields } = req.body;
+    const { password, contactInfo, name, specialties, experience, location, availability, imageUrl, zoomLink, description, timings, fees, education, languagesSpoken } = req.body;
 
     if (!password) {
       return res.status(400).json({ error: 'Password is required' });
+    }
+
+    // Check if a psychologist already exists with the same name, email, or phone number
+    const existingPsychologist = await Psychologist.findOne({
+      $or: [
+        { name },
+        { 'contactInfo.email': contactInfo.email },
+        { 'contactInfo.phone': contactInfo.phone }
+      ]
+    });
+
+    if (existingPsychologist) {
+      return res.status(400).json({ error: 'Psychologist already exists with this name, email, or phone' });
     }
 
     // Hash the password
@@ -109,10 +80,23 @@ router.post('/psychologists', async (req, res) => {
 
     // Create a new psychologist with the hashed password
     const newPsychologist = new Psychologist({
-      ...otherFields,
-      password: hashedPassword,
+      contactInfo,
+      name,
+      specialties,
+      experience,
+      location,
+      availability,
+      imageUrl,
+      zoomLink,
+      description,
+      timings,
+      fees,
+      education,
+      languagesSpoken,
+      password: hashedPassword, // Store the hashed password
     });
 
+    // Save the new psychologist to the database
     await newPsychologist.save();
     res.status(201).json({ message: 'Psychologist created successfully', psychologist: newPsychologist });
   } catch (error) {
