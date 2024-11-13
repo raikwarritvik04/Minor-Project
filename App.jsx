@@ -16,6 +16,7 @@ import LoginChoice from './pages/LoginChoice';
 import Confirmation from './pages/Confirmation';
 import RegisterChoice from './pages/RegisterChoice';
 import PsychologistRegister from './pages/PsychologistRegister';
+import PsychologistLogin from './pages/PsychologistLogin';
 const App = () => {
   return (
     <Router>
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/registerChoice" element={<RegisterChoice />} />
         <Route path="/psychologistRegister" element={<PsychologistRegister />} />
         <Route path="/loginChoice" element={<LoginChoice />} />
+        <Route path="/psychologistLogin" element={<PsychologistLogin />} />
       </Routes>
       <Footer />
     </Router>
